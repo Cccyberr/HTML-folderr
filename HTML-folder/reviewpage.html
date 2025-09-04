@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews - Courier Service</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4682b4;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    .review-form {
+      margin-bottom: 20px;
+    }
+    .review-form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    .review-form input, .review-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .reviews {
+      list-style: none;
+      padding: 0;
+    }
+    .review {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .review:last-child {
+      border-bottom: none;
+    }
+    .review h4 {
+      margin: 0;
+    }
+    .review p {
+      margin: 5px 0 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Customer Reviews</h1>
+</header>
+
+<div class="container">
+  <h2>Submit Your Review</h2>
+  <form class="review-form" id="review-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" name="rating" min="1" max="5" required>
+
+    <label for="review">Review:</label>
+    <textarea id="review" name="review" rows="4" required></textarea>
+
+    <button type="button" class="btn-primary" onclick="submitReview()">Submit Review</button>
+  </form>
+
+  <h2>Customer Reviews</h2>
+  <ul class="reviews" id="reviews">
+    <!-- Reviews will be added here dynamically -->
+  </ul>
+</div>
+
+<script>
+  function submitReview() {
+    const name = document.getElementById('name').value;
+    const rating = document.getElementById('rating').value;
+    const reviewText = document.getElementById('review').value;
+
+    if (name && rating && reviewText) {
+      const reviewList = document.getElementById('reviews');
+
+      const reviewItem = document.createElement('li');
+      reviewItem.classList.add('review');
+
+      const reviewContent = `
+        <h4>${name} - ${rating} Stars</h4>
+        <p>${reviewText}</p>
+      `;
+      reviewItem.innerHTML = reviewContent;
+
+      reviewList.appendChild(reviewItem);
+
+      // Clear the form
+      document.getElementById('review-form').reset();
+    } else {
+      alert('Please fill in all fields');
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Water</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .item {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+
+<ul id="beverages">
+  <li class="item">Coffee</li>
+  <li class="item">Tea</li>
+</ul>
+
+<button onclick="appendWater()">Water</button>
+
+<script>
+    function appendWater(){
+     /* var =  declare a new variable */
+      var beveragesList = document.getElementById("beverages");
+      var items = beveragesList.getElementsByClassName("item");
+      for (var i = 0; i < items.length; i++) {
+        items[i].innerHTML += " Water";
+        items[i].style.fontFamily = "Verdana, sans-serif";
+        items[i].style.color = "blue";
+      }
+    }
+</script>
+
+</body>
+</html>

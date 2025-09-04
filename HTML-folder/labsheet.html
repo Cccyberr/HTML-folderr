@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+}
+
+.form-container, .result-container {
+    width: 50%;
+    margin: auto;
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #00bcd4;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="tel"],
+select {
+    width: calc(100% - 20px);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #008c9e;
+}
+
+.result-table th {
+    background-color: #008c9e;
+}
+
+.result-table td {
+    text-align: center;
+    padding: 10px;
+}
+
+.result-table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+</style>
+<body>
+    <div class="form-container">
+        <form id="registrationForm" onsubmit="return handleSubmit(event)">
+            <table>
+                <tr>
+                    <th colspan="2">Student Registration Form</th>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td>Father Name</td>
+                    <td><input type="text" id="father_name" name="father_name" required></td>
+                </tr>
+                <tr>
+                    <td>Postal Address</td>
+                    <td><input type="text" id="postal_address" name="postal_address" required></td>
+                </tr>
+                <tr>
+                    <td>Personal Address</td>
+                    <td><input type="text" id="personal_address" name="personal_address" required></td>
+                </tr>
+                <tr>
+                    <td>Sex</td>
+                    <td>
+                        <input type="radio" id="male" name="sex" value="male" required> Male
+                        <input type="radio" id="female" name="sex" value="female" required> Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td>
+                        <select id="city" name="city" onchange="setPincode()" required>
+                            <option value="" disabled selected>select..</option>
+                            <option value="Ernakulam">Ernakulam</option>
+                            <option value="Alappuzha">Alappuzha</option>
+                            <option value="Kollam">Kollam</option>
+                            <!-- Add more options here -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course</td>
+                    <td>
+                        <select id="course" name="course" required>
+                            <option value="" disabled selected>select..</option>
+                            <!-- Add options here -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>District</td>
+                    <td>
+                        <select id="district" name="district" required>
+                            <option value="" disabled selected>select..</option>
+                            <!-- Add options here -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>
+                        <select id="state" name="state" required>
+                            <option value="Kerala">Kerala</option>
+                            <!-- Add more options here -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>PinCode</td>
+                    <td><input type="text" id="pincode" name="pincode" readonly required></td>
+                </tr>
+                <tr>
+                    <td>EmailId</td>
+                    <td><input type="email" id="emailid" name="emailid" required></td>
+                </tr>
+                <tr>
+                    <td>DOB</td>
+                    <td><input type="date" id="dob" name="dob" required></td>
+                </tr>
+                <tr>
+                    <td>MobileNo</td>
+                    <td><input type="tel" id="mobileno" name="mobileno" pattern="^\+91\d{10}$" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Submit Form">
+                    </td>
+                </tr>
+            </table>
+            
+                <label>
+                    <input type="radio" name="gender" > Male
+                </label>
+        </form>
+    </div>
+    <div class="result-container">
+        <table id="resultTable" class="result-table">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Date of Birth</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody">
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <script >
+        const cityToPincode = {
+    Ernakulam: '682020',
+    Alappuzha: '688001',
+    Kollam: '691001'
+};
+
+function setPincode() {
+    const city = document.getElementById('city').value;
+    const pincodeField = document.getElementById('pincode');
+    pincodeField.value = cityToPincode[city] || '';
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const dob = document.getElementById('dob').value;
+    const email = document.getElementById('emailid').value;
+    const mobile = document.getElementById('mobileno').value;
+
+    if (!/^(\+91)\d{10}$/.test(mobile)) {
+        alert('Mobile number should start with +91 and be 10 digits long.');
+        return false;
+    }
+
+    const resultBody = document.getElementById('resultBody');
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+        <td>${name}</td>
+        <td>${dob}</td>
+        <td>${email}</td>
+        <td>${mobile}</td>
+    `;
+
+    resultBody.appendChild(row);
+    document.getElementById('registrationForm').reset();
+    return false;
+}
+
+    </script>
+</body>
+</html>

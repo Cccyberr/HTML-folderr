@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Lab Exam</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(57, 209, 204);
+        }
+        #formid {
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 2px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Registration Form</h1>
+        <form id="formid">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+            <label for="fathername">Father's Name:</label>
+            <input type="text" id="fathername" name="fathername" required>
+            <br><br>
+            <label for="postaladdress">Postal Address:</label>
+            <input type="text" id="postaladdress" name="postaladdress" required>
+            <br><br>
+            <label>Sex:</label><br>
+            <input type="radio" id="male" name="sex" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" value="female" required>
+            <label for="female">Female</label>
+            <br><br>
+            <label for="state">State:</label>
+            <select id="state" name="state" required>
+                <option value="eranakulam">Eranakulam</option>
+                <option value="alapuzha">Alapuzha</option>
+                <option value="kollam">Kollam</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+        <table id="info-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father</th>
+                    <th>Address</th>
+                    <th>Sex</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById("formid").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var name = document.getElementById("name").value;
+            var fname = document.getElementById("fathername").value;
+            var postaladdress = document.getElementById("postaladdress").value;
+            var gender = document.querySelector('input[name="sex"]:checked').value;
+            var state = document.getElementById("state").value;
+
+            var newRow = document.createElement("tr");
+            newRow.classList.add("info");
+            newRow.innerHTML = "<td>" + name + "</td><td>" + fname + "</td><td>" + postaladdress + "</td><td>" + gender + "</td><td>" + state + "</td>";
+            document.querySelector("#info-table tbody").appendChild(newRow);
+        });
+    </script>
+</body>
+</html>

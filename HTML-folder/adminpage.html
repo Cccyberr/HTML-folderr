@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Cycle Rental</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-ksmXA2C8L4sNqfCieF7D3j3RM9MZKH8QZ7l4t9XXxU5SAJlq04WitGKOQS8A1DHS" crossorigin="anonymous">
+    <style>
+        body {background: linear-gradient(to bottom right, hsl(205, 32%, 87%), #0a7b4d);
+           
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #004d40;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #00695c;
+        }
+
+        nav a {
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #004d40;
+        }
+
+        .container {
+            padding: 2rem 10%;
+        }
+
+        .admin-section {
+            margin: 2rem 0;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #00695c;
+        }
+
+        .admin-section form {
+            margin-bottom: 2rem;
+        }
+
+        .admin-section label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-section input, .admin-section textarea, .admin-section select {
+            width: 100%;
+            max-width: 500px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .admin-section input:focus, .admin-section textarea:focus, .admin-section select:focus {
+            border-color: #00695c;
+        }
+
+        .admin-section input[type="submit"] {
+            background-color: #004d40;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .admin-section input[type="submit"]:hover {
+            background-color: #003d33;
+        }
+
+        .admin-section .list {
+            margin-top: 1.5rem;
+        }
+
+        .admin-section .list h3 {
+            margin-bottom: 1rem;
+            color: #00695c;
+        }
+
+        .admin-section .list-item {
+            padding: 1rem;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-section .list-item button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .admin-section .list-item button:hover {
+            background-color: #c0392b;
+        }
+
+        .table-container {
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        .admin-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #00695c;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 2rem 5%;
+            }
+        }
+
+        footer {
+            background-color: #004d40;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CHUTKI CYCLES</h1>
+    </header>
+   
+    <nav>
+        <a href="#manage-rentals">Manage Rentals</a>
+        <a href="#manage-services">Manage Services</a>
+        <a href="#manage-events">Manage Events</a>
+        <a href="#manage-gear">Manage Gear</a>
+    </nav>
+    <div class ="container">
+    <section id="manage-rentals">
+        <h2>Cycle booking</h2>
+        <form id="rental-form">
+            <label for="rental-bike">Cycle Model:</label>
+            <input type="text" id="rental-bike" required>
+            <label for="rental-price">Price:</label>
+            <input type="number" id="rental-price" required>
+            <button type="button" onclick="addRental()">Add to Wishlist</button>
+        </form>
+        <div id="rental-list">
+            <h3>Current Rentals</h3>
+            <!-- Rentals will be dynamically added here -->
+        </div>
+    </section>
+
+
+        <section id="manage-services" class="admin-section">
+            <h2>Manage Services</h2>
+            <form id="service-form">
+                <label for="service-name">Service Name:</label>
+                <input type="text" id="service-name" name="service-name" required>
+                <label for="service-description">Description:</label>
+                <textarea id="service-description" name="service-description" rows="4" required></textarea>
+                <input type="submit" value="Add Service" id = "hehe">
+            </form>
+            <div class="list" id="service-list">
+                <h3>Current Services</h3>
+                <!-- Services will be dynamically added here -->
+            </div>
+        </section>
+
+        <section id="manage-events" class="admin-section">
+            <h2>Manage Events</h2>
+            <form id="event-form">
+                <label for="event-name">Event Name:</label>
+                <input type="text" id="event-name" name="event-name" required>
+                <label for="event-description">Description:</label>
+                <textarea id="event-description" name="event-description" rows="4" required></textarea>
+                <label for="event-date">Date:</label>
+                <input type="date" id="event-date" name="event-date" required>
+                <input type="submit" value="Add Event">
+            </form>
+            <div class="list" id="event-list">
+                <h3>Upcoming Events</h3>
+                <!-- Events will be dynamically added here -->
+            </div>
+        </section>
+
+        <section id="manage-gear" class="admin-section">
+            <h2>Manage Gear</h2>
+            <form id="gear-form">
+                <label for="gear-name">Gear Name:</label>
+                <input type="text" id="gear-name" name="gear-name" required>
+                <label for="gear-description">Description:</label>
+                <textarea id="gear-description" name="gear-description" rows="4" required></textarea>
+                <label for="gear-price">Price:</label>
+                <input type="number" id="gear-price" name="gear-price" required>
+                <input type="submit" value="Add Gear">
+            </form>
+            <div id="manage-list">
+                <h3>Manage gear</h3>
+            </div>
+            </section>
+            <script>
+                // Create a Stripe client.
+                var stripe = Stripe('YOUR_PUBLIC_STRIPE_KEY');
+            
+                // Create an instance of Elements.
+                var elements = stripe.elements();
+            
+                // Create an instance of the card Element.
+                var card = elements.create('card');
+            
+                // Add an instance of the card Element into the `card-element` div.
+                card.mount('#card-element');
+            
+                // Handle form submission.
+                var form = document.getElementById('payment-form');
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+            
+                    stripe.createToken(card).then(function(result) {
+                        if (result.error) {
+                            // Inform the user if there was an error.
+                            var errorElement = document.getElementById('card-errors');
+                            errorElement.textContent = result.error.message;
+                        } else {
+                            // Send the token to your server.
+                            stripeTokenHandler(result.token);
+                        }
+                    });
+                });
+            
+                // Submit the form with the token ID.
+                function stripeTokenHandler(token) {
+                   
+                    alert('Payment successful!'); // For demo purposes
+                }
+            </script>
+            
+            <div class="list" id="gear-list">
+                <h3>Available Gear</h3>
+                <!-- Gear will be dynamically added here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Function to add a rental
+        function addRental() {
+            var bikeModel = document.getElementById('rental-bike').value;
+            var pricePerHour = document.getElementById('rental-price').value;
+
+            // Validation - You can add more validation as needed
+
+            // Create rental item
+            var rentalItem = document.createElement('div');
+            rentalItem.textContent = bikeModel + ' - $' + pricePerHour + ' per hour';
+            
+            // Add rental item to list
+            document.getElementById('rental-list').appendChild(rentalItem);
+            
+            // Clear input fields
+            document.getElementById('rental-bike').value = '';
+            document.getElementById('rental-price').value = '';
+        }
+        </script>
+     <script>
+        // Function to add a rental
+        function addRental() {
+            var bikeModel = document.getElementById('').value;
+            var pricePerHour = document.getElementById('').value;
+            var rentalItem = document.createElement('div');
+            rentalItem.textContent = bikeModel + ' - $' + pricePerHour + ' per hour';
+           
+       
+            document.getElementById('rental-list').appendChild(rentalItem);
+    
+            document.getElementById('rental-bike').value = '';
+            document.getElementById('rental-price').value = '';
+        }
+        </script>`
+       <script>
+        // Function to add an event item
+        function addEvent(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Get values from the form
+            const eventName = document.getElementById('event-name').value;
+            const eventDescription = document.getElementById('event-description').value;
+            const eventDate = document.getElementById('event-date').value;
+
+            // Create a new div element to hold the event details
+            const eventItem = document.createElement('div');
+            eventItem.classList.add('event-item'); // Add a class for styling purposes
+            eventItem.innerHTML = `<strong>Event Name:</strong> ${eventName}<br><strong>Description:</strong> ${eventDescription}<br><strong>Date:</strong> ${eventDate}`;
+
+            // Append the event item to the event list
+            document.getElementById('event-list').appendChild(eventItem);
+
+            // Clear the form fields after adding the event
+            document.getElementById('event-name').value = '';
+            document.getElementById('event-description').value = '';
+            document.getElementById('event-date').value = '';
+        }
+
+        // Add an event listener to the form for form submission
+        document.getElementById('event-form').addEventListener('submit', addEvent);
+    </script>
+        <script>
+            // Function to add a gear item
+            function addGear(event) {
+                event.preventDefault(); // Prevent the default form submission
+                
+                // Get values from the form
+                const gearName = document.getElementById('gear-name').value;
+                const gearDescription = document.getElementById('gear-description').value;
+                const gearPrice = document.getElementById('gear-price').value;
+    
+                // Create a new div element to hold the gear details
+                const gearItem = document.createElement('div');
+                gearItem.classList.add('gear-item'); // Add a class for styling purposes
+                gearItem.innerHTML = `<strong>Gear Name:</strong> ${gearName}<br><strong>Description:</strong> ${gearDescription}<br><strong>Price:</strong> $${gearPrice}`;
+    
+                // Append the gear item to the gear list
+                document.getElementById('gear-list').appendChild(gearItem);
+    
+                // Clear the form fields after adding the gear
+                document.getElementById('gear-name').value = '';
+                document.getElementById('gear-description').value = '';
+                document.getElementById('gear-price').value = '';
+            }
+    
+            // Add an event listener to the form for form submission
+            document.getElementById('gear-form').addEventListener('submit', addGear);
+        </script>
+    
+         <script>
+            // Function to add a service item
+            function addService(event) {
+                event.preventDefault(); // Prevent the default form submission
+                
+                // Get values from the form
+                const serviceName = document.getElementById('service-name').value;
+                const serviceDescription = document.getElementById('service-description').value;
+    
+                // Create a new div element to hold the service details
+                const serviceItem = document.createElement('div');
+                serviceItem.classList.add('service-item'); // Add a class for styling purposes
+                serviceItem.innerHTML = `<strong>Service Name:</strong> ${serviceName}<br><strong>Description:</strong> ${serviceDescription}`;
+    
+                // Append the service item to the service list
+                document.getElementById('service-list').appendChild(serviceItem);
+    
+                // Clear the form fields after adding the service
+                document.getElementById('service-name').value = '';
+                document.getElementById('service-description').value = '';
+            }
+    
+            // Add an event listener to the form for form submission
+            document.getElementById('service-form').addEventListener('submit', addService);
+        </script>`
+        <script>
+       
+       function addRental() {
+           var bikeModel = document.getElementById('service-name').value;
+           var pricePerHour = document.getElementById('hehe').value;
+
+           var rentalItem = document.createElement('div');
+           rentalItem.textContent = bikeModel + ' - $' + pricePerHour + ' per hour';
+           
+           document.getElementById('service-list').appendChild(rentalItem);
+     
+           document.getElementById('service-name').value = '';
+           document.getElementById('hehe').value = '';
+       }
+
+   </script>
+
+        // Similarly, you can define functions for managing services, events, and gear
+    </script>
+    </script>
+</div>
+        </body>
+            </html>

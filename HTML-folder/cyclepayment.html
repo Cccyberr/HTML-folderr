@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Methods - Chutki Cycles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="payment-styles.css">
+</head>
+<style>
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #004d40;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #00695c;
+}
+
+nav a {
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+    background-color: #004d40;
+    border-bottom: 2px solid #ffcc00;
+}
+
+.payment-section {
+    margin: 2rem 10%;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.payment-section:hover {
+    transform: translateY(-10px);
+}
+
+.payment-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #00695c;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.payment-section form {
+    margin-bottom: 2rem;
+}
+
+.payment-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #00695c;
+}
+
+.payment-section input {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
+}
+
+.payment-section input:focus {
+    border-color: #00695c;
+    box-shadow: 0 0 5px rgba(0, 105, 92, 0.5);
+}
+
+.payment-section input[type="submit"] {
+    background-color: #004d40;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.payment-section input[type="submit"]:hover {
+    background-color: #003d33;
+    transform: translateY(-2px);
+}
+
+.payment-list {
+    margin-top: 2rem;
+}
+
+.payment-list h3 {
+    margin-bottom: 1rem;
+    color: #00695c;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.payment-list .item {
+    padding: 1rem;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.payment-list .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.payment-list .item button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+.payment-list .item button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+footer {
+    background-color: #004d40;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    footer {
+        position: relative;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    header, footer {
+        padding: 5px 0;
+    }
+
+    nav ul {
+        font-size: 14px;
+    }
+}
+
+footer .social-icons a {
+    color: white;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+    color: #ffcc00;
+}
+
+</style>
+<body>
+    <header>
+        <h1>Chutki Cycles - Payment</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="payment.html">Payment </a>
+        </nav>
+    </header>
+
+    <section class="payment-section">
+        <h2>Payment Details</h2>
+        <form id="payment-form">
+            <label for="card-name">Cardholder Name:</label>
+            <input type="text" id="card-name" name="card-name" required>
+
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required>
+
+            <label for="card-expiry">Expiry Date:</label>
+            <input type="month" id="card-expiry" name="card-expiry" required>
+
+            <label for="card-cvv">CVV:</label>
+            <input type="text" id="card-cvv" name="card-cvv" required>
+
+            <input type="submit" value="Submit Payment">
+        </form>
+
+        <div class="payment-list" id="payment-list">
+            <h3>Payment Methods</h3>
+            <!-- Dynamically added payment methods will appear here -->
+        </div>
+    </section>
+    <style>
+    h3{text-align: center;
+    color: hsl(170, 84%, 19%);}
+    </style>
+<h3>THANKYOU FOR USING OUR WEBSITE</h3>
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 Chutki Cycles</p>
+    </footer>
+
+    <script src="payment-scripts.js"></script>
+    <script>
+        // Function to add a payment method
+function addPayment(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get values from the form
+    const cardName = document.getElementById('card-name').value;
+    const cardNumber = document.getElementById('card-number').value;
+    const cardExpiry = document.getElementById('card-expiry').value;
+    const cardCVV = document.getElementById('card-cvv').value;
+
+    // Create a new div element to hold the payment details
+    const paymentItem = document.createElement('div');
+    paymentItem.classList.add('item');
+    paymentItem.innerHTML = `
+        <strong>Cardholder Name:</strong> ${cardName}<br>
+        <strong>Card Number:</strong> ${cardNumber}<br>
+        <strong>Expiry Date:</strong> ${cardExpiry}<br>
+        <strong>CVV:</strong> ${cardCVV}
+    `;
+
+    // Append the payment item to the payment list
+    document.getElementById('payment-list').appendChild(paymentItem);
+
+    // Clear the form fields after adding the payment method
+    document.getElementById('payment-form').reset();
+}
+
+// Add event listener for the payment form submission
+document.getElementById('payment-form').addEventListener('submit', addPayment);
+
+    </script>
+</body>
+</html>

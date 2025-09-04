@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration Form</title>
+<script>
+function validateForm() {
+    var name = document.getElementById('name').value;
+    var mobile = document.getElementById('mobile').value;
+    var address = document.getElementById('address').value;
+    var city = document.getElementById('city').value;
+    var state = document.getElementById('state').value;
+    var pincode = document.getElementById('pincode').value;
+
+    if (name === '' || mobile === '' || address === '' || city === '' || state === '' || pincode === '') {
+        alert('Please fill out all fields.');
+        return false;
+    }
+
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
+        alert('Name field should contain only alphabets.');
+        return false;
+    }
+
+    if (!/^\d{10}$/.test(mobile)) {
+        alert('Mobile number should be 10 digits.');
+        return false;
+    }
+
+    if (!/^\d{6}$/.test(pincode)) {
+        alert('Pin code should be 6 digits.');
+        return false;
+    }
+
+    return true;
+}
+</script>
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+<form onsubmit="return validateForm()">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="mobile">Mobile No:</label><br>
+    <input type="text" id="mobile" name="mobile"><br><br>
+
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br><br>
+
+    <label for="city">City:</label><br>
+    <input type="text" id="city" name="city"><br><br>
+
+    <label for="state">State:</label><br>
+    <input type="text" id="state" name="state"><br><br>
+
+    <label for="pincode">Pin code:</label><br>
+    <input type="text" id="pincode" name="pincode"><br><br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form>
+
+</body>
+</html>

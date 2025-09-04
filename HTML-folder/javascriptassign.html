@@ -1,0 +1,185 @@
+
+<html>
+    <head>
+        <title>Assignment </title>
+        <style>
+            h2 {
+                font-size: medium;
+            }
+            h3{
+                text-decoration: underline;
+            }
+            body{
+                font-size: large;
+                padding: 20px;
+                
+            }
+            table, th, tr, td{
+                border: 2px solid black;
+                border-collapse: collapse;
+            }
+            td{
+                width: 50%;
+            }
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width:device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1><center><u>JAVASCRIPT ASSIGNMENT-5</u></center></h1>
+        <br>
+        <br>
+    
+        <h2 style="text-align: center;"> Krishnapriya M<br>AM.SC.U4CSE23046<br>S2 CSE A</h2>
+        <br>
+        <hr>
+        <h3 style="text-align: left;">Question 1</h3>
+        <p><strong>Test case 1 - 2.25 </strong><br>Square root of 2.25 is:<span id="one"></span><br>
+            <strong>Test case 2:- -4 </strong><br>Square root of -4 is: <span id="two"></span><br>
+        <strong>Test case 3- Hello </strong><br>Square root of Hello is: <span id="three"></span><br>
+        </p>
+        <script>
+            document.getElementById('one').innerHTML = Math.sqrt(2.25);
+            document.getElementById('two').innerHTML = Math.sqrt(-4);
+            document.getElementById('three').innerHTML = Math.sqrt(Hello);
+        </script>
+        <br>
+        <h3 style="text-align: left;">Question 2</h3>
+        <p> <strong>Random number generator between 1 and 10 (inclusive):</strong>
+            <script>
+                function getRandom(min,max){
+                    min = Math.ceil(min);
+                    max = Math.floor(max);
+                    return Math.floor(Math.random()*(max-min)+min);
+                }
+                document.writeln(getRandom(1,11))
+            </script>
+        </p><br>
+        <h3 style="text-align: left;">Question 3</h3>
+        <p><div><strong>Current date and time:</strong><br><span id="today"></span></div></p>
+        <script>
+            document.getElementById('today').innerHTML=Date();
+        </script>
+        <br>
+        <h3>Question 4</h3>
+        <!--Write a JavaScript program to calculate number of days left unit next new year.
+Note: define a new object Date (2022,1,1);-->
+        <p><strong>Number of days left till next new year:</strong> </p>
+        <script>
+            const today = new Date();
+            const nextYear = new Date(today.getFullYear() + 1, 0, 1);
+            const daysLeft = (nextYear - today) / (1000 * 60 * 60 * 24);
+            document.write(Math.floor(daysLeft)+1);
+        </script>
+        <h3>Question 5</h3>
+        <p><strong>Find index of "locate" from this string: "Please locate where locate occurs!"</strong></p>
+        <script>
+            var val = "Please locate where 'locate' occurs!";
+            document.write(val.indexOf("locate"));
+        </script>
+        <h3>Question 6</h3>
+        <p><strong>Converting first letter of string to capital</strong><br> string: 'javaScript'</p>
+        <script>
+            var obj = "javaScript";
+            function capitalize(str){
+                return str.charAt(0).toUpperCase() + str.slice(1);
+            }
+            document.write(capitalize(obj));
+        </script>
+        <h3>Question 7</h3>
+        <p>The navigator object contains information about the browser. The navigator object is a property of the window object.
+            The navigator object is accessed with: <pre>window.navigator</pre> or just <pre>navigator</pre></p>
+            <table>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>appCodeName</td>
+                    <td>Returns the browser code name</td>
+                </tr>
+                <tr>
+                    <td>appName</td>
+                    <td>Returns the browser name</td>
+                </tr>
+                <tr>
+                    <td>appVersion</td>
+                    <td>Returns browser version</td>
+                </tr>
+                <tr>
+                    <td>cookieEnabled</td>
+                    <td>Returns true if the browser cookies are enabled</td>
+                </tr>
+                <tr>
+                    <td>geolocation</td>
+                    <td>Returns a geolocation object for the user's location</td>
+                </tr>
+                <tr>
+                    <td>language</td>
+                    <td>Returns browser language</td>
+                </tr>
+                <tr>
+                    <td>onLine</td>
+                    <td>Returns true if the browser is online</td>
+                </tr>
+                <tr>
+                    <td>platform</td>
+                    <td>Returns browser platform</td>
+                </tr>
+                <tr>
+                    <td>product</td>
+                    <td>Returns browser engine name</td>
+                </tr>
+                <tr>
+                    <td>userAgent</td>
+                    <td>Returns browser user-agent leader</td>
+                </tr>
+            </table>
+        <h3>Question 8</h3>
+        <button onclick="history.forward()">Forward</button>
+        <p>Clicking "Forward" will not result in any action, because there is no next page in the history list.</p>
+        <br>
+        <button onclick="history.back()">Backward</button>
+
+        <p>Clicking "Backward" will not result in any action, because there is no previous page in the history list.</p>
+        <h3>Question 9</h3>
+        <p>Click on the button to see image</p>
+        <img id="image" src="https://blog.talent500.co/wp-content/uploads/2023/01/Skills-you-need-to-get-a-job-as-a-JavaScript-developer-1.png">
+        <br>
+        <br>
+        <button type="button" onclick="show()" id="img">
+            Show Image
+        </button>
+        <script>
+            function show(){
+                document.getElementById("image").src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRECGM_QRL0LeEq4_jseJ_BenuNhnGPih2wow&s";
+                
+            }
+        </script>
+        <h3>Question 10</h3>
+        <span> <button id="red" style="color: red;" onclick="changeBg1()">Red</button> <button id="blue" style="color: blue;" onclick="changeBg2()">Blue</button> <button id="green" style="color: green;" onclick="changeBg3()">Green</button></span>
+        <script>
+            function changeBg1(){
+                document.body.style.backgroundColor = "red";
+            }
+            function changeBg2(){
+                document.body.style.backgroundColor = "blue";
+            }
+            function changeBg3(){
+                document.body.style.backgroundColor = "green";
+            }
+        </script>
+        <h3>Question 11</h3>
+        <button id="no" onclick="generate()">Click me for generating paragraphs!</button>
+        <script>
+            function generate(){
+                for(i=1;i<=10;i++){
+                var paragraph = document.createElement("p");
+                var text = document.createTextNode("welcome to my JavaScript, i am Krishnapriya M");
+                paragraph.appendChild(text);
+                document.body.appendChild(paragraph);
+                }
+            }
+        </script>
+    </body>
+</html>
